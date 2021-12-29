@@ -1,0 +1,141 @@
+/*---------------------*/
+/*Reset                */
+/*---------------------*/
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	max-height: 100vh;
+}
+
+ul {
+	list-style: none;
+}
+
+input {
+	outline: none;
+}
+
+i {
+	pointer-events: none;
+}
+
+/*---------------------*/
+/*Utility Classes      */
+/*---------------------*/
+
+.flex {
+	display: flex;
+	gap: 1rem;
+}
+
+/*---------------------*/
+/*Body                 */
+/*---------------------*/
+
+body {
+	flex-direction: column;
+	background-image: url(kevin-ianeselli-4iTVoGYY7bM-unsplash.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: .875rem;
+	font-weight: 400;
+}
+
+main {
+	flex-grow: 1;
+	overflow-y: scroll;
+}
+
+/*---------------------*/
+/*Styling Start        */
+/*---------------------*/
+
+h1 {
+	color: #FBFAF5;
+	padding: 1.5rem;
+	letter-spacing: .3rem;
+	font-weight: 700;
+}
+
+.todo-lists {
+	margin: 1rem 0;
+	padding: 0 1.5rem;
+}
+ul > * + * {
+	margin-top: 1rem;
+}
+
+li {
+	display: flex;
+	gap: 1rem;
+	text-align: center;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: .5rem;
+	overflow: hidden;
+	background-color: #FBFAF5;
+}
+
+.complete-icon,
+.delete-icon {
+	padding: .875rem;
+	border: none;
+	background-image: linear-gradient(to right, #eb3349, #f45c43);
+	color: white;
+	font-size: .875rem;
+}
+
+.complete-icon {
+	order: -1;
+	background-image: linear-gradient(to right, #02aab0, #00cdac);
+}
+
+footer {
+	padding: 1.5rem;
+	background-image: linear-gradient(to bottom, #243b55, #141e30);
+}
+
+.input-field {
+	gap: 0;
+}
+
+.input {
+	padding: .875rem;
+	width: 100%;
+	border: none;
+	border-top-left-radius: .5rem;
+	border-bottom-left-radius: .5rem;
+	background-color: #FBFAF5;
+}
+
+.input-btn {
+	padding: .875rem;
+	border: none;
+	background-image: linear-gradient(120deg, #43cea2, #185a9d);
+	color: white;
+	font-size: .875rem;
+	border-top-right-radius: .5rem;
+	border-bottom-right-radius: .5rem;
+	opacity: .5;
+	pointer-events: none;
+}
+
+.input-btn.active {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.completed {
+	text-decoration: line-through;
+	opacity: .5;
+}
