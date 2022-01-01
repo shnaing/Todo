@@ -37,22 +37,29 @@ todoLists.addEventListener("click", checkTodo)
 function addTodo(event) {
 	event.preventDefault()
 	let inputData = input.value
-	tasks.push(inputData)
+	const task = createTask(inputData)
+	tasks.push(task)
 	render()
 	save()
 	inputButton.classList.remove("active")
+}
+
+function createTask(name) {
+	return {id: Date.now().toString(), name: name, complete: false}
 }
 
 function render() {
 	clearElement(todoLists)
 	tasks.forEach(task => {
 	const newTodo = document.createElement("li")
+	newTodo.dataset.taskId = task.id
 	newTodo.classList.add("todo")
+	renderCompleteItem (newTodo)
 	todoLists.appendChild(newTodo)
 
 	const todoText = document.createElement("p")
 	todoText.classList.add("text")
-	todoText.innerText = task
+	todoText.innerText = task.name
 	newTodo.appendChild(todoText)
 
 	const completeButton = document.createElement("button")
@@ -73,6 +80,15 @@ function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(tasks))
 }
 
+function renderCompleteItem (newTodo) {
+	const selectedTask = tasks.find(task => task.id === newTodo.dataset.taskId)
+	if (selectedTask.complete === true) {
+		newTodo.classList.add("completed")
+	}
+	else {
+		newTodo.classList.remove("completed")
+	}
+}
 function clearElement(element) {
 	while (element.firstChild) {
 		element.removeChild(element.firstChild)
@@ -90,12 +106,20 @@ function checkTodo(event) {
 
    if (item.classList[0] === "complete-icon") {
    	const todo = item.parentElement
+		const selectedTask = tasks.find(task => task.id === todo.dataset.taskId)
    	todo.classList.toggle("completed")
+   	if (todo.classList[1] === "completed") {
+	   	selectedTask.complete = true
+   	}
+   	else {
+	   	selectedTask.complete = false
+   	}
+   	save()
    }
 }
 
-function removeLocalTodos(task) {
-  const index = task.children[0].innerText;
-  tasks.splice(tasks.indexOf(index), 1);
+function removeLocalTodos(todo) {
+  const index = todo.children[0].innerText
+  tasks.splice(tasks.findIndex(element => index), 1)
   save()
 }
