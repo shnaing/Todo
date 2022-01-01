@@ -81,7 +81,7 @@ function save() {
 }
 
 function renderCompleteItem (newTodo) {
-	const selectedTask = tasks.find(task => task.id === newTodo.dataset.taskId)
+	const selectedTask = tasks.find(task => task.id === newTodo.dataset.taskId) || ''
 	if (selectedTask.complete === true) {
 		newTodo.classList.add("completed")
 	}
