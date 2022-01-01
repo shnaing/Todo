@@ -22,7 +22,12 @@ input.onkeyup = (event) => {
     inputButton.classList.remove("active")
   }
   if (event.key === 'Enter' || event.keyCode === 13) {
+  	if (inputData.trim() != 0) {
      addTodo(event)
+    }
+    else if (inputData === "") {
+    	return
+    }
    }
 }
 
